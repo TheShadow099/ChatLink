@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Telegram Clone</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Supabase keys injection -->
+  <script>
+    window.SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
+    window.SUPABASE_ANON_KEY = "YOUR_ANON_KEY";
+  </script>
+</head>
+<body>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen">
+      <h1>Sign In</h1>
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Password" />
+      <button id="btn-signin">Sign In</button>
+    </div>
+
+    <!-- Chat List Screen -->
+    <div id="chat-list-screen" class="screen hidden">
+      <h1>Conversations</h1>
+      <ul id="conversations"></ul>
+      <button id="btn-logout">Logout</button>
+    </div>
+
+    <!-- Chat Screen -->
+    <div id="chat-screen" class="screen hidden">
+      <header>
+        <button id="btn-back">◀</button>
+        <h2 id="chat-title">Chat</h2>
+      </header>
+      <ul id="messages"></ul>
+      <div id="composer">
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button id="btn-send">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm"></script>
+  <script src="app.js"></script>
+  <script>
+    // Register service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  </script>
+</body>
+</html>
